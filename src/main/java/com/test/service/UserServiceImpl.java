@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private MailSender mailSender;
 
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
