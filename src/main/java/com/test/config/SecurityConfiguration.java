@@ -24,7 +24,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Autowired
+
     private PasswordEncoder passwordEncoder;
+
 
    /* @Override
     public void configure(WebSecurity web) throws Exception {
@@ -38,7 +40,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests().antMatchers("/user").permitAll()
                 .antMatchers("/user/verify").permitAll()
-                .antMatchers("/user/send-email").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
