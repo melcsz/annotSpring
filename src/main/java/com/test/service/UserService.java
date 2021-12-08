@@ -9,6 +9,7 @@ import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     List<User> getAll();
@@ -27,6 +28,14 @@ public interface UserService {
 
     void verify(String email) throws NotFoundException;
 
-    void sendEmail(String email);
+    void sendEmail(String email,String token);
+
+    Optional<User> findUserByResetToken(String resetToken);
+
+    void updateResetPasswordToken(String token, String email) throws NotFoundException, BadRequest;
+
+    User getByResetPasswordToken(String token);
+
+    void updatePassword(User user, String newPassword,String token) throws Exception;
 
 }

@@ -15,6 +15,7 @@ public class MainApplication {
         UserService service = context.getBean(UserService.class);
         System.out.println(service.findByEmail("mels.hakobian@gmail.com"));*/
         SpringApplication.run(MainApplication.class, args);
+        System.out.println(System.currentTimeMillis());
 
     }
 }

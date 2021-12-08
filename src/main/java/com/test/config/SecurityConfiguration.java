@@ -27,13 +27,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private PasswordEncoder passwordEncoder;
 
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests().antMatchers("/user").permitAll()
                 .antMatchers("/user/verify").permitAll()
+                .antMatchers("/user/forgot").permitAll()
+                .antMatchers("/user/reset").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

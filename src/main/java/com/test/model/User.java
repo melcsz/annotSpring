@@ -23,6 +23,30 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
+
+    public Long getReservePasswordTokenCreationDate() {
+        return reservePasswordTokenCreationDate;
+    }
+
+    public void setReservePasswordTokenCreationDate(Long reservePasswordTokenCreationDate) {
+        this.reservePasswordTokenCreationDate = reservePasswordTokenCreationDate;
+    }
+
+    @Column(name = "reserve_passwrod_token_creation_date")
+    private Long reservePasswordTokenCreationDate;
+
+
     public User(String name, String email, String password, Gender gender, Status status) {
         setName(name);
         setEmail(email);

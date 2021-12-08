@@ -6,6 +6,7 @@ import com.test.model.*;
 import com.test.service.AddressService;
 import com.test.service.PhoneService;
 import com.test.service.UserService;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -84,8 +85,16 @@ public class UserController {
         userService.verify(email);
     }
 
-    @PostMapping("/send-email")
-    public void sendEmail(@RequestParam String email)  {
-        userService.sendEmail(email);
+    @RequestMapping("/forgot")
+    public void forgot(@RequestParam String email) throws NotFoundException, BadRequest {
+        String token = RandomString.make(10);
+        userService.updateResetPasswordToken(token,email);
+        userService.sendEmail(email,token);
+    }
+
+    @RequestMapping("/reset")
+    public void reset(@RequestParam String email
+            ,@RequestParam String password, @RequestParam String token) throws Exception {
+        userService.updatePassword(userService.findByEmail(email),password,token);
     }
 }
